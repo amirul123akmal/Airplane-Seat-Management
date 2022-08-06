@@ -1,0 +1,2 @@
+seat = 100
+capacity = 12000 kg

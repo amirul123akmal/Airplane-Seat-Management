@@ -1,0 +1,2 @@
+seat = 50
+capacity = 12300 kg
