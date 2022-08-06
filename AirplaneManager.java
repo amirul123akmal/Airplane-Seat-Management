@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.StringTokenizer;
 
 import java.io.FileWriter;
 import java.io.PrintWriter;
@@ -27,8 +28,11 @@ public class AirplaneManager {
         {
             File folder = new File("Database/Airplanes/");
             File[] files = folder.listFiles();
+            ArrayList<int[]> positionData = new ArrayList<>();
+            int[] pos = {0};
             for(File plane : files)
             {
+                positionData.clear();
                 name = plane.getName().replaceAll(".txt", "");
                 Scanner data = new Scanner(plane);
                 while(data.hasNextLine())
@@ -36,8 +40,15 @@ public class AirplaneManager {
                     String[] a = data.nextLine().split(" ");
                     if(a[0].equals("seat"))           seat = Integer.parseInt(a[2]);
                     else if(a[0].equals("capacity"))  cap = Integer.parseInt(a[2]);
+                    else
+                    {
+                        StringTokenizer st = new StringTokenizer(a[2]);
+                        pos[0] = Integer.parseInt(st.nextToken());
+                        pos[1] = Integer.parseInt(st.nextToken());
+                        positionData.add(pos);
+                    }
                 }
-                AirplaneList.add(new Airplane(name, seat, cap));
+                AirplaneList.add(new Airplane(name, seat, cap, positionData));
                 data.close();
             }
         }
