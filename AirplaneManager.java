@@ -8,10 +8,20 @@ import java.io.File;
 
 public class AirplaneManager {
     static ArrayList<Airplane> AirplaneList = new ArrayList<>();
+    static boolean first = false;
 
     public AirplaneManager()
     {
-        forceUpdate();
+        /*
+         * Since this is a global class
+         * We dont need to recheck the database
+         * + Performance (When initialize a new object)
+         */
+        if(!first)
+        {
+            forceUpdate();
+            first = true;
+        }
     }
 
     public ArrayList<Airplane> getAirplanesData()
