@@ -48,4 +48,8 @@ public class Windows {
         frame.validate();
         frame.repaint();
     }
+    public JPanel getJpanel(String WhichJPanel)
+    {
+        return JpanelData.get(WhichJPanel.toLowerCase());
+    }
 }
