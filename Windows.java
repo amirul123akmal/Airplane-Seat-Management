@@ -45,8 +45,7 @@ public class Windows {
             return ;
         frame.getContentPane().removeAll();
         frame.add(JpanelData.get(PanelForWhat));
-        frame.validate();
-        frame.repaint();
+        refresh();
     }
     public JPanel getJpanel(String WhichJPanel)
     {
