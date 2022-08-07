@@ -21,11 +21,14 @@ public class run
         final int width = 1000, height = 800;
         final int buttonHeight = 30, buttonWidth = 120, buttonStart = 200;
         int buttonCount = 0;
+
         ArrayList<Component> gatherComp = new ArrayList<>();
         Windows gui = new Windows("Airplane Seat Management", width, height);
-        new createSeating();
         AirplaneManager data = new AirplaneManager();
         
+        new ViewSeating();
+        new createSeating();
+
         JTable table = new JTable()
         {
             public boolean isCellEditable(int row, int col)
@@ -56,6 +59,9 @@ public class run
         // 2
         JButton viewSeating = new JButton("View Seatings");
         viewSeating.setBounds(buttonStart, buttonHeight * buttonCount++, buttonWidth, buttonHeight);
+        viewSeating.addActionListener((e) ->{
+            new ViewSeating(data.getAirplanesData().get(table.getSelectedRow()));
+        });
         gatherComp.add(viewSeating);
 
         // 3
