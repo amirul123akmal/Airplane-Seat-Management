@@ -38,23 +38,23 @@ public class AirplaneManager {
         {
             File folder = new File("Database/Airplanes/");
             File[] files = folder.listFiles();
-            ArrayList<int[]> positionData = new ArrayList<>();
-            int[] pos = {0};
             for(File plane : files)
             {
+                ArrayList<int[]> positionData = new ArrayList<>();
                 positionData.clear();
                 name = plane.getName().replaceAll(".txt", "");
                 Scanner data = new Scanner(plane);
                 while(data.hasNextLine())
                 {
+                    int[] pos = new int[2];
                     String[] a = data.nextLine().split(" ");
                     if(a[0].equals("seat"))           seat = Integer.parseInt(a[2]);
                     else if(a[0].equals("capacity"))  cap = Integer.parseInt(a[2]);
-                    else
+                    else if(a[0].equals("b"))
                     {
-                        StringTokenizer st = new StringTokenizer(a[2]);
-                        pos[0] = Integer.parseInt(st.nextToken());
-                        pos[1] = Integer.parseInt(st.nextToken());
+                        String[] b = a[2].split(",");
+                        pos[0] = Integer.parseInt(b[0]);
+                        pos[1] = Integer.parseInt(b[1]);
                         positionData.add(pos);
                     }
                 }
@@ -80,7 +80,7 @@ public class AirplaneManager {
 
             for(int[] a : data)
                 printing.println(
-                    String.format("%d,%d", a[0], a[1])
+                    String.format("b = %d,%d", a[0], a[1])
                 );
 
             printing.close();
